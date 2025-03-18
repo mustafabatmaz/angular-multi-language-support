@@ -1,12 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TranslocoModule } from '@ngneat/transloco';
+import { LanguageService } from './language.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [TranslocoModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss',
+  providers: []
 })
 export class AppComponent {
-  title = 'angularMultiLanguage';
+  constructor(private languageService: LanguageService) { }
+
+  switchLanguage(language: string) {
+    this.languageService.switchLanguage(language);
+  }
 }
